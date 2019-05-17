@@ -1,0 +1,137 @@
+<div class="container">
+  <div >
+    <form class="form-horizontal">
+      <input type="hidden" [(ngModel)]="cognicao.idCognicao" name="idCognicao" >
+      
+      <div class="form-group row">
+        <div class="col-sm-4">
+          <label for="linguagem" class="control-label">Linguagem</label>
+          <select [(ngModel)]="cognicao.linguagem" name="linguagem" id="linguagem" class="form-control" [compareWith]="compareLinguagem">
+            <option value="">Selecione </option>
+            <option *ngFor="let linguagem of linguagemList" [ngValue]="linguagem"> {{ linguagem.nmLinguagem }} </option>
+          </select>
+        </div>
+        
+        <div class="col-sm-4">
+          <label for="tipo" class="control-label">Tipo</label>
+          <select [(ngModel)]="cognicao.tipo" name="tipo" id="tipo" class="form-control" [compareWith]="compareTipo">
+            <option value="">Selecione </option>
+            <option *ngFor="let tipo of tipoList" [ngValue]="tipo" > {{ tipo.dsTipo }} </option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-sm-4">
+          <label for="nome">Nome</label>
+          <input type="text" [(ngModel)] = "cognicao.nmCognicao" name="nmCognicao" id="nome" class="form-control">
+        </div>
+
+        <div class="col-sm-4">
+          <label for="camada">Camada</label>
+          <select [(ngModel)]= "cognicao.camada" name="camada" id="camada" class="form-control" [compareWith]="compareCamada">
+            <option value="">Selecione</option>
+            <option *ngFor="let camada of camadaList" [ngValue]="camada"> {{ camada.dsCamada }} </option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-sm-8">
+          <label for="descricao">Descrição</label>
+          <input type="text" [(ngModel)] = "cognicao.dsCognicao" name="dsCognicao" id="descricao" class="form-control">
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-sm-4">
+          <label for="versao" >Versão</label>
+          <input [(ngModel)]="cognicao.nmVersao" name="nmVersao" id="versao" type="text" class="form-control">
+        </div>
+        <div class="col-sm-4">
+          <label for="categoria">Categoria</label>
+          <select [(ngModel)]= "cognicao.categoria" name="categoria" id="categoria" class="form-control" [compareWith]= "compareCategoria">
+            <option value="" >Selecione</option>
+            <option *ngFor= "let categoria of categoriaList" [ngValue]= "categoria" > {{ categoria.dsCategoria }} </option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group row"> 
+        <div class="col-sm-8">
+          <label for="codigo">Código</label>
+          <textarea [(ngModel)]="cognicao.txCodigo" name="txCodigo" id="codigo" class="form-control" rows="3" rows="6"></textarea>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-sm-8">
+          <label for="observacao">Observação</label>
+          <textarea [(ngModel)]="cognicao.txObservacao" name="txObservacao" id="observacao" class="form-control" rows="3"></textarea>
+        </div>
+      </div>
+      <div>
+        <label for="link">Relevancia</label>
+        :Colocar em opções
+      </div>
+      <div>
+        <label for="link">Prioridade</label>
+        :Colocar em opções
+      </div>
+
+      <div>
+        <label for="link">Link referencia</label>
+        :Colocar em mais opções
+      </div>
+
+      <div > 
+        <label for="">Relevancia</label>
+        :Colocar em mais opções
+      </div>
+      <div>
+        <label for="">Anexos</label>
+        :Colocar em mais opções
+      </div>
+
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-8">
+          <button (click)="addCognicao()" class="btn btn-primary">Gravar</button>
+          <button (click)="reset()" class="btn">Cancelar</button>
+        </div>
+      </div>
+
+    </form>
+  </div>  
+</div>
+
+<br>
+<div>
+  <table class = "table table-striped table-bordered">
+    <tr style="background: lightblue;">
+      <th>Id</th>
+      <th>Nome</th>
+      <th>Descrição</th>
+      <th>Linguagem</th>
+      <th>Tipo</th>
+      <th>Editar | Excluir | visualizar</th>
+    </tr>
+
+    <tr *ngFor = "let cognicao of cognicaoList">
+      <td width= "5%">{{ cognicao.idCognicao }}</td>
+      <td>{{ cognicao.nmCognicao }}</td>
+      <td>{{ cognicao.dsCognicao }}</td>
+      <td>{{ cognicao.linguagem?.nmLinguagem }}</td>
+      <td>{{ cognicao.tipo?.dsTipo }}</td>
+      <td width= "20%">
+        <button (click) = "getCognicaoPorId( cognicao.idCognicao )" class="btn btn-default btn-sm"><i class="material-icons">edit</i></button>
+        &nbsp;|&nbsp;
+        <button (click) = "deleteCognicao( cognicao.idCognicao )" class="btn btn-default btn-sm"><i class="material-icons" style="color: red;">clear</i></button>
+        &nbsp;|&nbsp;
+        <button class="btn btn-default btn-sm">
+          <i class="material-icons" >visibility</i>
+        </button>
+      </td>
+    </tr>
+
+  </table>
+</div>

@@ -1,0 +1,11 @@
+.menu {
+    width: 20%;
+    height: 40%;
+    position: relative;
+}
+
+.footer {
+    position:fixed;
+    bottom:0;
+    width:100%;
+}

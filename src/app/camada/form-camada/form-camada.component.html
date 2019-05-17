@@ -1,0 +1,41 @@
+<div class="container">
+  <div>
+    <form class="form-horizontal">
+      <input type="hidden" name="idCamada" id="idCamada" />
+      <div class="form-group">
+        <label for="dsCamada" class="control-label">Descrição</label>
+        <div class="col-sm-8">
+          <input type="text" [(ngModel)]= "camada.dsCamada" name="dsCamada" id="dsCamada" class="form-control" />
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-8">
+          <button (click)= "addCamada()" class="btn btn-primary">Gravar</button>
+          <button (click)= "reset()" class=" btn" >Cancelar</button>
+        </div>
+      </div>
+    </form>
+  </div>
+  
+  <br> 
+  <div>
+    <table class= "table table-striped table-bordered">
+      <tr style= "background: lightblue;">
+        <th>Id</th>
+        <th>Descrição</th>
+        <th>Editar | Excluir</th>
+      </tr>
+
+      <tr *ngFor= "let camada of camadaList">
+        <td width= "10%"> {{ camada.idCamada }} </td>
+        <td> {{ camada.dsCamada }} </td>
+        <td width= "15%">
+          <button (click) = "getCamadaPorId(camada.idCamada)" class="btn btn-default btn-sm"><i class="material-icons">edit</i></button>      
+            &nbsp;|&nbsp;
+          <button (click) = "deleteCamada(camada.idCamada)" class="btn btn-default btn-sm"><i class="material-icons" style="color: red;">clear</i></button>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+</div>
